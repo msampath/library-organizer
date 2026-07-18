@@ -110,26 +110,18 @@ def test_same_volume_posix_same_filesystem_via_nearest_ancestor(tmp_path):
     assert staging.same_volume(a_target, b_target, _posix_drive_of) is True
 
 
-def test_same_volume_posix_never_stats_a_nonexistent_path_directly(
-        tmp_path, monkeypatch):
-    """The nearest-existing-ancestor walk must never os.stat a path that
-    doesn't exist yet — a not-yet-created destination is always resolved to
-    its nearest real parent first."""
-    real_stat = os.stat
-
-    def guarded_stat(path, *a, **kw):
-        # Existence must be checked via real_stat: os.path.exists calls
-        # os.stat, which is this guard once monkeypatched (infinite
-        # recursion on any platform whose exists() goes through os.stat).
-        p = str(path)
-        try:
-            real_stat(p)
-        except OSError:
-            raise AssertionError(f"stat called on nonexistent path: {p}")
-        return real_stat(path, *a, **kw)
-
-    monkeypatch.setattr(os, "stat", guarded_stat)
+def test_same_volume_posix_resolves_missing_dst_to_nearest_existing_ancestor(
+        tmp_path):
+    """The st_dev comparison must run on the nearest EXISTING ancestor —
+    a not-yet-created destination resolves to its nearest real parent, so
+    same_volume gives a real answer instead of falling into the
+    unprovable-OSError default. (Not pinned by monkeypatching os.stat: the
+    existence walk itself is stat-based on POSIX, so a global stat guard
+    can only recurse or misfire — it also breaks pytest's own reporting.)"""
     target = str(tmp_path / "deep" / "not" / "real" / "dst.bin")
+    resolved = staging._nearest_existing_ancestor(target)
+    assert os.path.exists(resolved)
+    assert os.path.samefile(resolved, str(tmp_path))
     assert staging.same_volume(target, str(tmp_path), _posix_drive_of) is True
 
 

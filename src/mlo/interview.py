@@ -116,7 +116,17 @@ def _staging_for(library_root: str, sources: list[dict],
             if not key:
                 continue
             sep = "\\" if "\\" in path and "/" not in path else "/"
-            root = key + sep + "Delete-mlo"
+            if path == library_root:
+                # Staging under the library root itself is refused by
+                # config.validate (C4: staged files would be indexed as
+                # library content) — place it BESIDE the root instead. The
+                # key stays the root's own path, so root_for still resolves
+                # everything under the library to this entry.
+                root = key.rsplit(sep, 1)[0] + sep + "Delete-mlo"
+            else:
+                # Under a source root is allowed and normal (the scanners
+                # prune staging dirs) and guarantees the same volume.
+                root = key + sep + "Delete-mlo"
         if key not in staging:
             staging[key] = root
     return staging

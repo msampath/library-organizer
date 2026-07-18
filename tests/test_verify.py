@@ -61,17 +61,21 @@ def test_deep_catches_same_size_content_change(world):
 def test_missing_candidate_confirmed_present_on_disk_is_not_reported(world):
     """C49: an index row whose rel string the walk never matches (short-name/
     case/normalization variant) must not be reported missing when the file it
-    actually names is still on disk. Simulated here with a case-variant index
-    row for the same on-disk file -- os.path.exists resolves it (NTFS is
-    case-insensitive), exactly like the short-name aliasing seen live."""
+    actually names is still on disk. Simulated with a case-variant row on
+    Windows (NTFS is case-insensitive -- exactly like the short-name aliasing
+    seen live) and a dot-segment spelling on POSIX (case is a real difference
+    there); both are rel strings the walk never yields but os.path.exists
+    resolves to the same on-disk file."""
     cfg = make_cfg(world)
     p = indexed_file(world, "Video/b.mp4", b"B" * 100)   # real row, walk matches it
     size, qh = fingerprint.quick(str(p))
-    world["store"].index_upsert(os.path.join("Video", "B.MP4"), size, qh,
+    alias = (os.path.join("Video", "B.MP4") if os.name == "nt"
+             else os.path.join("Video", ".", "b.mp4"))
+    world["store"].index_upsert(alias, size, qh,
                                  os.stat(p).st_mtime_ns, "scan-v")
     world["store"].index_commit()
     f = verify_library(world["store"], cfg)
-    assert os.path.join("Video", "B.MP4") not in f.missing
+    assert alias not in f.missing
 
 
 def test_missing_candidate_confirmed_absent_is_still_reported(world):

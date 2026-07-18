@@ -86,7 +86,10 @@ def test_build_dispose_robust_to_redundant_separators_in_staging_root(world, ker
 
     cfg = make_cfg(world)
     dst = _stage_a_file(world, cfg, kernel)
-    doubled = cfg.staging["E"].replace(os.sep, os.sep * 2)
+    # Double only INTERIOR separators: a leading '//' is a different path by
+    # the POSIX spec (normpath preserves it), not a redundant spelling.
+    root = cfg.staging["E"]
+    doubled = root[0] + root[1:].replace(os.sep, os.sep * 2)
     cfg2 = dataclasses.replace(cfg, staging={**cfg.staging, "E": doubled})
     res = planmod.build_dispose(world["store"], cfg2, staging_key="E")
     assert res.n_rows == 1

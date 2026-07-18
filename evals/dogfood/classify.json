@@ -1,0 +1,10 @@
+[
+  {"item": "Videos/Phone/VID-20200817-WA0012.mp4", "expect_kind": "personal", "note": "WhatsApp media"},
+  {"item": "Videos/Dash/20250520050008_0000001A.MP4", "expect_kind": "personal", "note": "dashcam timestamp"},
+  {"item": "Photos/Cam/DSC_0481.jpg", "expect_kind": "personal", "note": "Nikon camera prefix"},
+  {"item": "Photos/Cam/IMG_2231.jpg", "expect_kind": "personal", "note": "camera prefix"},
+  {"item": "Videos/Web/UnityAds-579fd4ac-m31-1000.mp4", "expect_kind": "junk", "note": "ad-network cache"},
+  {"item": "Videos/Web/1444697903_570x320_low_quality.mp4", "expect_kind": "junk", "note": "epoch web-video cache"},
+  {"item": "cache/a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6.dat", "expect_kind": "junk", "note": "hex-named cache"},
+  {"item": "tmp/.temp-9f2c1a.mp4", "expect_kind": "junk", "note": "temp partial download"}
+]

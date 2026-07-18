@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=77"]          # PEP 639 license expression
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mlo"
+dynamic = ["version"]                  # single-sourced from mlo.__version__
+description = "Safety-first media/personal-data consolidation engine with an agent layer designed for local models"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "AGPL-3.0-or-later"
+license-files = ["LICENSE"]
+authors = [{ name = "Surakshith Sampath" }]
+keywords = ["media-library", "deduplication", "file-organization", "agent", "llm", "safety"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: System :: Archiving",
+    "Topic :: System :: Filesystems",
+]
+# Zero runtime dependencies — stdlib only (sqlite3, tomllib, hashlib, urllib).
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/msampath/library-organizer"
+Issues = "https://github.com/msampath/library-organizer/issues"
+Changelog = "https://github.com/msampath/library-organizer/blob/master/CHANGELOG.md"
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "hypothesis>=6"]
+# Opt-in enrichment connectors (§5.2). The core stays stdlib-only; these pull
+# the C-backed libraries the ID3/EXIF connectors use. TMDb/SubDB/web use stdlib
+# urllib, so they need nothing here — just a key.
+enrich = ["mutagen>=1.47", "Pillow>=10", "thefuzz>=0.22"]
+
+[project.scripts]
+mlo = "mlo.cli:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "mlo.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+mlo = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

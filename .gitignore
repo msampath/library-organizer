@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+.pytest_cache/
+.hypothesis/
+.coverage
+coverage-*.json
+htmlcov/
+
+# mlo workspace state (never commit a real library's index/journal)
+.mlo/
+mlo.toml
+
+# Secrets / env
+.env
+.env.*
+
+# Personal source material (not part of the product)
+cleanup_project_status.docx
+super-review-report*.md
+product-gap-analysis.md
+
+# OS noise
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Claude Code session workspace (worktrees, local settings)
+.claude/
+
+# Internal working materials — never shipped (the public repo is the product only)
+agent_harness.md
+CLAUDE.md
+EXAMPLES.md

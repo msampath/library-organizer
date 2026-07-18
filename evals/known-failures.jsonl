@@ -1,0 +1,6 @@
+{"failure": "collision-suffix-treated-as-dup", "item": "Chinna Chinna Aasai (1).mp3", "bad_kind": "junk", "good": "a distinct track — the (1) suffix is a name collision, not a duplicate; hash decides"}
+{"failure": "numeric-tamil-movie-labeled-junk", "item": "Movies/Tamil/1/movie.mkv", "bad_kind": "junk", "good": "a distinct film in a numerically-named folder, never junk"}
+{"failure": "real-movie-not-junk", "item": "3 Idiots (2009).mkv", "bad_kind": "junk", "good": "a real movie is never junk by name"}
+{"failure": "family-video-not-junk", "item": "Appa 60th Birthday.mp4", "bad_kind": "junk", "good": "personal/irreplaceable, never junk"}
+{"failure": "ebook-not-junk", "item": "Documents/Unsorted/Sapiens.epub", "bad_kind": "junk", "good": "an ebook belongs in Books, never junk"}
+{"failure": "missing-english-keyword-misroute", "item": "English Movies/Inception (2010).mkv", "bad_kind": "junk", "good": "a language keyword must never turn a title into junk"}

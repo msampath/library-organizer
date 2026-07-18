@@ -1,0 +1,18 @@
+[
+  {"top": "User3", "ext": ".html", "count": 21401, "bytes": 858000000, "exemplars": ["User3/forum/thread-8812.html", "User3/wiki/ep-102.html", "User3/scrape/page4471.html"], "gold": "stage-junk"},
+  {"top": "User3", "ext": ".txt", "count": 76318, "bytes": 287000000, "exemplars": ["User3/subs/ep-441.txt", "User3/scrape/post-99.txt"], "gold": "stage-junk"},
+  {"top": "Movies", "ext": ".vob", "count": 21, "bytes": 10309000000, "exemplars": ["Movies/wedding-dvd/VTS_01_1.VOB", "Movies/home-dvd-2004/VTS_02_1.VOB"], "gold": "keep-organize"},
+  {"top": "CellPhone Backups", "ext": ".crypt8", "count": 9, "bytes": 32000000, "exemplars": ["CellPhone Backups/S4backup/WhatsApp/Databases/msgstore-2015-02-02.1.db.crypt8"], "gold": "keep-organize"},
+  {"top": "User1Backup", "ext": ".file", "count": 744, "bytes": 3940000000, "exemplars": ["User1Backup/S5/Android/data/com.spotify.mobile/spotifycache/3ab71ae0.file"], "gold": "stage-junk"},
+  {"top": "User1Backup", "ext": "(none)", "count": 1066, "bytes": 1200000000, "exemplars": ["User1Backup/Nexus6/1Videoshow/cache/2nrv1a89f53011d95wejygs58.0", "User1Backup/Nexus6/DCIM/.thumbnails/.thumbdata3-1763508120"], "gold": "stage-junk"},
+  {"top": "Phone Backups", "ext": ".001", "count": 10, "bytes": 45270000000, "exemplars": ["Phone Backups/Moto G5 - 20180902/Backup.7z.001"], "gold": "needs-human"},
+  {"top": "camera-roll", "ext": ".jpg", "count": 3110, "bytes": 9100000000, "exemplars": ["camera-roll/2016/IMG_3311.jpg", "camera-roll/2017/IMG_5102.jpg"], "gold": "keep-organize"},
+  {"top": "INSTALL", "ext": ".exe", "count": 17, "bytes": 40000000, "exemplars": ["INSTALL/setup_office2010.exe", "INSTALL/driver-hp-1020.exe"], "gold": "stage-junk"},
+  {"top": "Dropbox Backup", "ext": "(none)", "count": 391, "bytes": 1640000000, "exemplars": ["Dropbox Backup/Dropbox/.dropbox.cache/clH7H4vD57ECVQFRConn"], "gold": "stage-junk"},
+  {"top": "kids-videos", "ext": ".mp4", "count": 212, "bytes": 15400000000, "exemplars": ["kids-videos/first-steps.mp4", "kids-videos/school-play-2014.mp4"], "gold": "keep-organize"},
+  {"top": "Other lost files", "ext": ".jpg", "count": 1998, "bytes": 43000000, "exemplars": ["Other lost files/1385238651368.jpg", "Other lost files/1386166142071.jpg"], "gold": "needs-human"},
+  {"top": "C", "ext": ".cs", "count": 37, "bytes": 5000000, "exemplars": ["C/projects/scheduler/Program.cs"], "gold": "needs-human"},
+  {"top": "New Dell Backup", "ext": ".dat", "count": 93, "bytes": 40000000, "exemplars": ["New Dell Backup/tool/state0041.dat"], "gold": "stage-junk"},
+  {"top": "voice-memos", "ext": ".amr", "count": 84, "bytes": 61000000, "exemplars": ["voice-memos/AUD-20160126-WA0002.amr", "voice-memos/note-idea.amr"], "gold": "keep-organize"},
+  {"top": "torrents", "ext": ".part", "count": 12, "bytes": 1340000000, "exemplars": ["torrents/movie.mkv.part"], "gold": "stage-junk"}
+]

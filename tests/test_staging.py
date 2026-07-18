@@ -118,8 +118,14 @@ def test_same_volume_posix_never_stats_a_nonexistent_path_directly(
     real_stat = os.stat
 
     def guarded_stat(path, *a, **kw):
+        # Existence must be checked via real_stat: os.path.exists calls
+        # os.stat, which is this guard once monkeypatched (infinite
+        # recursion on any platform whose exists() goes through os.stat).
         p = str(path)
-        assert os.path.exists(p), f"stat called on nonexistent path: {p}"
+        try:
+            real_stat(p)
+        except OSError:
+            raise AssertionError(f"stat called on nonexistent path: {p}")
         return real_stat(path, *a, **kw)
 
     monkeypatch.setattr(os, "stat", guarded_stat)
